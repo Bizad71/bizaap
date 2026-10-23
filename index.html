@@ -1,17 +1,559 @@
-<!doctype html>
-<html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark"><title>Bizaap | دفتر اشتراک‌ها</title>
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#a10f22">
+<title>بیزااپ | مدیریت اشتراک‌ها</title>
 <style>
-:root{--bg:#080c14;--panel:#111a29;--line:#29374b;--text:#edf4ff;--muted:#9aabc2;--blue:#2785ff;--green:#35d39a;--yellow:#ffd166;--red:#ff6c82}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 85% -10%,#12315b 0,transparent 48%),var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif;line-height:1.7}main{max-width:1050px;margin:auto;padding:20px 13px 40px}.header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}.brand{display:flex;gap:12px;align-items:center}.logo{width:47px;height:47px;display:grid;place-items:center;border-radius:15px;background:linear-gradient(145deg,#1684ff,#0750a8);font-weight:bold;font-size:24px}.brand h1{font-size:21px;margin:0}.brand p{font-size:12px;color:var(--muted);margin:1px 0}.private{font-size:12px;border:1px solid var(--line);border-radius:99px;padding:6px 11px;color:var(--muted)}.panel{background:linear-gradient(145deg,#121c2c,#0d1421);border:1px solid var(--line);border-radius:17px;padding:16px;margin-bottom:15px}.panel h2{font-size:16px;margin:0 0 10px}.hint{font-size:12px;color:var(--muted);margin:0 0 13px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:5px}input{width:100%;padding:12px;background:#080f1b;border:1px solid #2a3a51;border-radius:10px;color:var(--text);font:inherit;outline:none}input:focus{border-color:var(--blue);box-shadow:0 0 0 3px #2785ff22}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}.btn{font:inherit;font-size:12px;border:1px solid var(--line);background:#1a283c;color:var(--text);padding:9px 12px;border-radius:10px;cursor:pointer}.btn.primary{background:var(--blue);border-color:var(--blue);font-weight:bold}.btn.danger{background:#321925;border-color:#6a2e3b;color:#ffb6c0}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:15px}.stat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:13px}.stat small{color:var(--muted);font-size:11px}.stat strong{display:block;font-size:25px;margin-top:4px}.stat.soon strong{color:var(--yellow)}.stat.expired strong{color:var(--red)}.stat.active strong{color:var(--green)}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.toolbar input{flex:1;min-width:160px}.toolbar select{background:#080f1b;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:9px}.alert{white-space:pre-line;border:1px solid var(--line);border-radius:11px;padding:11px;margin-bottom:12px;font-size:13px;color:var(--muted)}.alert.warn{border-color:#715927;color:#ffe3a2;background:#261f12}.alert.good{border-color:#235c49;color:#9bf0cc;background:#10271f}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:12px}table{width:100%;min-width:700px;border-collapse:collapse;background:#0d1522}th,td{text-align:right;padding:11px 12px;border-bottom:1px solid #202d40;font-size:12px;vertical-align:middle}th{background:#131e2f;color:var(--muted);font-weight:500}tr:last-child td{border-bottom:0}.shop{font-weight:bold;font-size:13px}.url{color:#86baff;display:block;direction:ltr;text-align:right;overflow-wrap:anywhere}.tag{display:inline-block;padding:3px 8px;border-radius:30px;font-size:11px}.tag.active{color:#a0f2d1;background:#12382c}.tag.soon{color:#ffe09b;background:#403319}.tag.expired{color:#ffb5c0;background:#431e2a}.tag.future{color:#bdd7ff;background:#1b2e4c}.empty{text-align:center;padding:25px;color:var(--muted)}.notice{font-size:11px;color:var(--muted);margin-top:12px}.toast{font-size:12px;color:var(--muted);margin-top:8px;min-height:20px}.foot{text-align:center;color:var(--muted);font-size:11px;margin-top:18px}@media(max-width:650px){main{padding:13px 9px 28px}.grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.brand h1{font-size:18px}.panel{padding:12px}}
-</style></head><body><main>
-<header class="header"><div class="brand"><div class="logo">B</div><div><h1>Bizaap | دفتر اشتراک‌ها</h1><p>پنل شخصی مدیریت اشتراک فروشگاه‌ها</p></div></div><span class="private">فقط برای مدیر</span></header>
-<section class="panel"><h2 id="formTitle">ثبت فروشگاه جدید</h2><p class="hint">فقط چهار مورد را وارد کن. پنل خودش روزهای باقی‌مانده و هشدارها را حساب می‌کند.</p>
-<div class="grid"><div class="field"><label for="shopName">نام فروشگاه</label><input id="shopName" maxlength="120" placeholder="مثلاً فروشگاه بهار"></div><div class="field"><label for="siteUrl">آدرس سایت فروشگاه</label><input id="siteUrl" type="url" placeholder="https://example.github.io/shop"></div><div class="field"><label for="startDate">تاریخ شروع اشتراک</label><input id="startDate" type="date"></div><div class="field"><label for="endDate">تاریخ پایان اشتراک</label><input id="endDate" type="date"></div></div>
-<div class="actions"><button class="btn primary" id="save">ثبت فروشگاه</button><button class="btn" id="cancelEdit" hidden>لغو ویرایش</button></div><div class="toast" id="formMsg" role="status"></div></section>
-<section class="stats"><div class="stat"><small>کل فروشگاه‌ها</small><strong id="total">۰</strong></div><div class="stat active"><small>اشتراک فعال</small><strong id="active">۰</strong></div><div class="stat soon"><small>پایان تا ۷ روز آینده</small><strong id="soon">۰</strong></div><div class="stat expired"><small>اشتراک تمام‌شده</small><strong id="expired">۰</strong></div></section>
-<section class="panel"><h2>فهرست فروشگاه‌ها و هشدارها</h2><div class="toolbar"><input id="search" placeholder="جست‌وجوی نام یا آدرس سایت"><select id="filter"><option value="all">همه</option><option value="soon">در حال اتمام</option><option value="expired">تمام‌شده</option><option value="active">فعال</option><option value="future">شروع‌نشده</option></select><button class="btn" id="backup">دانلود بکاپ</button><button class="btn" id="restoreBtn">بازیابی بکاپ</button><input id="restore" type="file" accept=".json,application/json" hidden></div>
-<div id="alert" class="alert good">هنوز فروشگاهی ثبت نشده است.</div><div class="tablewrap"><table><thead><tr><th>فروشگاه</th><th>شروع</th><th>پایان</th><th>وضعیت اشتراک</th><th>عملیات</th></tr></thead><tbody id="rows"><tr><td colspan="5" class="empty">هنوز فروشگاهی ثبت نشده است.</td></tr></tbody></table></div>
-<p class="notice">اطلاعات در همین مرورگر ذخیره می‌شود. مرتب بکاپ بگیر؛ پاک‌کردن داده‌های مرورگر ممکن است اطلاعات را حذف کند. این نسخه با GitHub یا دستگاه‌های دیگر همگام نمی‌شود.</p></section><div class="foot">Bizaap Subscription Manager · بدون حساب مشتری و بدون تغییر در سایت مشتری</div></main>
+:root{--r:#a10f22;--rd:#710817;--rl:#fff0f2;--bg:#f5f5f7;--t:#26262b;--m:#777783;--b:#e5e5eb}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--t);font:14px Tahoma,Arial,sans-serif}
+header{background:linear-gradient(135deg,var(--rd),var(--r));color:white;padding:24px 16px;border-radius:0 0 23px 23px}
+.head,.container{max-width:1050px;margin:auto}
+h1{font-size:24px;margin:0 0 9px}
+header p{margin:0;color:#ffe5e9;line-height:2}
+.container{padding:20px 13px 40px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.stat,.panel,.shop{background:white;border:1px solid var(--b);border-radius:15px}
+.stat{padding:15px}
+.stat span{display:block;font-size:12px;color:var(--m);margin-bottom:10px}
+.stat strong{font-size:25px;color:var(--r)}
+.panel{padding:17px;margin-bottom:17px}
+h2{font-size:17px;margin:0 0 17px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.full{grid-column:1/-1}
+label{font-size:12px;font-weight:bold}
+input,select,textarea{width:100%;min-width:0;padding:12px;border:1px solid #d9d9e0;border-radius:10px;background:white;font:inherit;color:var(--t);outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--r);box-shadow:0 0 0 3px #a10f2212}
+textarea{min-height:80px;resize:vertical}
+.hint{font-size:11px;color:var(--m);line-height:1.9}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
+button,.btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;border:0;border-radius:9px;padding:11px 13px;font:inherit;font-weight:bold;text-decoration:none;cursor:pointer}
+button:disabled{opacity:.5;cursor:not-allowed}
+.primary{background:var(--r);color:white}
+.primary:hover{background:var(--rd)}
+.secondary{background:var(--rl);color:var(--r)}
+.neutral{background:#eeeef2;color:#444}
+.danger{background:#ffebed;color:#a10f22}
+.call{background:#e5f7eb;color:#176b3b}
+.small{padding:8px 10px;font-size:12px}
+.section-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.section-head h2{margin:0}
+.filters{display:grid;grid-template-columns:2fr 1fr;gap:10px;margin-bottom:14px}
+.list{display:grid;gap:11px}
+.shop{padding:15px}
+.shop-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.shop-name{font-weight:bold;font-size:16px;overflow-wrap:anywhere}
+.status{display:inline-block;border-radius:20px;padding:6px 9px;font-size:11px;font-weight:bold}
+.active{background:#e6f6ec;color:#176b3b}
+.soon{background:#fff0d6;color:#935000}
+.expired{background:#ffe6e9;color:#a10f22}
+.meta-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:13px}
+.meta{padding:10px;background:#fafafa;border-radius:9px;min-width:0;overflow-wrap:anywhere;line-height:1.9;font-size:12px}
+.meta span{display:block;color:var(--m);font-size:11px}
+.shop-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+.empty{text-align:center;padding:24px 10px;color:var(--m);line-height:2}
+.hidden{display:none!important}
+a{overflow-wrap:anywhere}
+footer{text-align:center;color:var(--m);font-size:11px;padding:0 10px 25px}
+@media(max-width:580px){
+ h1{font-size:21px}.stats{gap:6px}.stat{padding:11px 7px}.stat span{font-size:10px;line-height:1.8}.stat strong{font-size:21px}
+ .grid{grid-template-columns:1fr}.full{grid-column:auto}.filters{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header>
+ <div class="head">
+  <h1>بیزااپ | مدیریت اشتراک‌ها</h1>
+  <p>مدیریت فروشگاه‌ها، تاریخ اشتراک و پیگیری مشتریان</p>
+ </div>
+</header>
+
+<main class="container">
+ <section class="stats">
+  <div class="stat"><span>کل فروشگاه‌ها</span><strong id="total">۰</strong></div>
+  <div class="stat"><span>اشتراک فعال</span><strong id="activeCount">۰</strong></div>
+  <div class="stat"><span>نیازمند پیگیری</span><strong id="warningCount">۰</strong></div>
+ </section>
+
+ <section class="panel" id="formPanel">
+  <h2 id="formTitle">ثبت فروشگاه جدید</h2>
+  <form id="shopForm">
+   <input type="hidden" id="editId">
+   <div class="grid">
+    <div class="field">
+     <label for="shopName">نام فروشگاه *</label>
+     <input id="shopName" required maxlength="100" placeholder="نام فروشگاه">
+    </div>
+    <div class="field">
+     <label for="managerName">نام مدیر</label>
+     <input id="managerName" maxlength="100" placeholder="نام و نام خانوادگی">
+    </div>
+    <div class="field">
+     <label for="managerPhone">شماره مدیر</label>
+     <input id="managerPhone" type="tel" inputmode="tel" placeholder="09123456789">
+    </div>
+    <div class="field">
+     <label for="province">استان</label>
+     <select id="province"><option value="">انتخاب استان</option></select>
+    </div>
+    <div class="field">
+     <label for="city">شهر</label>
+     <select id="city" disabled><option value="">ابتدا استان را انتخاب کنید</option></select>
+    </div>
+    <div class="field full">
+     <label for="address">آدرس کامل</label>
+     <textarea id="address" placeholder="خیابان، کوچه، پلاک، واحد و جزئیات دیگر"></textarea>
+    </div>
+    <div class="field full">
+     <label for="siteUrl">آدرس وب‌سایت</label>
+     <input id="siteUrl" type="text" dir="ltr" placeholder="https://example.github.io">
+    </div>
+    <div class="field">
+     <label for="startDate">تاریخ شروع اشتراک شمسی *</label>
+     <input id="startDate" required inputmode="numeric" placeholder="۱۴۰۵/۰۸/۰۱">
+    </div>
+    <div class="field">
+     <label for="endDate">تاریخ پایان اشتراک شمسی *</label>
+     <input id="endDate" required inputmode="numeric" placeholder="۱۴۰۵/۰۹/۰۱">
+    </div>
+   </div>
+   <p class="hint">تاریخ‌ها را به شکل سال/ماه/روز وارد کن. مثال: ۱۴۰۵/۰۸/۰۱</p>
+   <div class="actions">
+    <button class="primary" type="submit" id="saveBtn">ثبت فروشگاه</button>
+    <button class="neutral hidden" type="button" id="cancelBtn">لغو ویرایش</button>
+    <button class="secondary" type="button" id="clearBtn">پاک کردن فرم</button>
+   </div>
+  </form>
+ </section>
+
+ <section class="panel">
+  <div class="section-head">
+   <h2>هشدارهای اشتراک</h2>
+   <button type="button" class="secondary small" id="warningToggle">نمایش همه</button>
+  </div>
+  <p class="hint">اشتراک‌های منقضی‌شده و اشتراک‌هایی که ۷ روز یا کمتر تا پایانشان باقی مانده است، اینجا نمایش داده می‌شوند. برای تماس با مدیر، دکمه تماس را بزن.</p>
+  <div id="warningList" class="list"></div>
+ </section>
+
+ <section class="panel">
+  <div class="section-head">
+   <h2>فهرست فروشگاه‌ها</h2>
+   <div class="actions" style="margin:0">
+    <button type="button" class="secondary small" id="backupBtn">دریافت پشتیبان</button>
+    <button type="button" class="secondary small" id="restoreBtn">بازیابی پشتیبان</button>
+    <input type="file" id="backupFile" accept=".json,application/json" class="hidden">
+   </div>
+  </div>
+  <div class="filters">
+   <input id="search" placeholder="جست‌وجوی فروشگاه، مدیر، شماره یا سایت">
+   <select id="filter">
+    <option value="all">همه وضعیت‌ها</option>
+    <option value="active">فعال</option>
+    <option value="soon">در آستانه پایان</option>
+    <option value="expired">منقضی‌شده</option>
+   </select>
+  </div>
+  <div id="shopList" class="list"></div>
+ </section>
+</main>
+<footer>بیزااپ — پنل مدیریت اشتراک‌ها</footer>
+
 <script>
-(()=>{const $=id=>document.getElementById(id),KEY='bizaap_subscription_manager_v1';let shops=[],editId=null;const fa=n=>new Intl.NumberFormat('fa-IR').format(n);const today=()=>{const d=new Date();d.setHours(0,0,0,0);return d};const dateOf=s=>{if(!s)return null;const a=s.split('-').map(Number);if(a.length!==3||a.some(Number.isNaN))return null;const d=new Date(a[0],a[1]-1,a[2]);d.setHours(0,0,0,0);return d};const days=s=>{const d=dateOf(s);return d?Math.round((d-today())/86400000):null};const state=s=>{const n=days(s.endDate),start=days(s.startDate);if(start!==null&&start>0)return'future';if(n===null)return'expired';if(n<0)return'expired';if(n<=7)return'soon';return'active'};const stateName=s=>({future:'شروع‌نشده',active:'فعال',soon:'در حال اتمام',expired:'تمام‌شده'})[s];const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));function load(){try{const d=JSON.parse(localStorage.getItem(KEY)||'[]');shops=Array.isArray(d)?d:[]}catch{shops=[]}}function persist(){localStorage.setItem(KEY,JSON.stringify(shops));render()}function reset(){editId=null;$('shopName').value='';$('siteUrl').value='';$('startDate').value='';$('endDate').value='';$('formTitle').textContent='ثبت فروشگاه جدید';$('save').textContent='ثبت فروشگاه';$('cancelEdit').hidden=true;$('formMsg').textContent=''}function render(){$('total').textContent=fa(shops.length);$('active').textContent=fa(shops.filter(s=>state(s)==='active').length);$('soon').textContent=fa(shops.filter(s=>state(s)==='soon').length);$('expired').textContent=fa(shops.filter(s=>state(s)==='expired').length);const q=$('search').value.trim().toLowerCase(),f=$('filter').value;const list=shops.filter(s=>(!q||(s.name+' '+s.url).toLowerCase().includes(q))&&(f==='all'||state(s)===f)).sort((a,b)=>(days(a.endDate)??99999)-(days(b.endDate)??99999));$('rows').innerHTML=list.length?list.map(s=>{const st=state(s),n=days(s.endDate);let remain=st==='future'?`شروع در ${fa(days(s.startDate))} روز دیگر`:st==='expired'?`مهلت تمام شده${n!==null?` (${fa(Math.abs(n))} روز پیش)`:''}`:n===0?'امروز آخرین روز است':`${fa(n)} روز باقی‌مانده`;return `<tr><td><div class="shop">${esc(s.name)}</div><a class="url" target="_blank" rel="noopener noreferrer" href="${esc(s.url)}">${esc(s.url)}</a></td><td>${esc(s.startDate)}</td><td><b>${esc(s.endDate)}</b><div style="color:var(--muted);font-size:11px">${remain}</div></td><td><span class="tag ${st}">${stateName(st)}</span></td><td><div class="actions" style="margin:0"><button class="btn" data-edit="${esc(s.id)}">ویرایش / تمدید</button><button class="btn danger" data-del="${esc(s.id)}">حذف</button></div></td></tr>`}).join(''):'<tr><td colspan="5" class="empty">موردی پیدا نشد.</td></tr>';const urgent=shops.filter(s=>['soon','expired'].includes(state(s)));$('alert').className='alert '+(urgent.length?'warn':'good');$('alert').textContent=urgent.length?urgent.map(s=>`${s.name}: ${state(s)==='expired'?'اشتراک تمام شده است':days(s.endDate)===0?'امروز آخرین روز اشتراک است':`${fa(days(s.endDate))} روز تا پایان اشتراک`}`).join('\n'):'هشدار فعالی وجود ندارد؛ اشتراک‌ها یا فعال‌اند یا هنوز شروع نشده‌اند.'}
-$('save').addEventListener('click',()=>{const name=$('shopName').value.trim(),url=$('siteUrl').value.trim(),startDate=$('startDate').value,endDate=$('endDate').value;if(!name||!url||!startDate||!endDate){$('formMsg').textContent='هر چهار فیلد را کامل کن.';return}let normalized;try{normalized=new URL(url);if(!['http:','https:'].includes(normalized.protocol))throw 0}catch{$('formMsg').textContent='آدرس سایت معتبر نیست؛ آدرس کامل مثل https://example.com وارد کن.';return}if(endDate<startDate){$('formMsg').textContent='تاریخ پایان نباید قبل از تاریخ شروع باشد.';return}const r={id:editId||('shop_'+Date.now()),name,url:normalized.href.replace(/\/$/,''),startDate,endDate};if(editId)shops=shops.map(s=>s.id===editId?r:s);else shops.push(r);try{persist();reset();$('formMsg').textContent='ذخیره شد.'}catch{$('formMsg').textContent='ذخیره‌سازی مرورگر انجام نشد.'}});$('cancelEdit').addEventListener('click',reset);$('search').addEventListener('input',render);$('filter').addEventListener('change',render);$('rows').addEventListener('click',e=>{const eb=e.target.closest('[data-edit]'),db=e.target.closest('[data-del]');if(eb){const s=shops.find(x=>x.id===eb.dataset.edit);if(!s)return;editId=s.id;$('shopName').value=s.name;$('siteUrl').value=s.url;$('startDate').value=s.startDate;$('endDate').value=s.endDate;$('formTitle').textContent='ویرایش / تمدید اشتراک';$('save').textContent='ذخیره تغییرات';$('cancelEdit').hidden=false;$('formMsg').textContent='تاریخ پایان را برای تمدید تغییر بده.';window.scrollTo({top:0,behavior:'smooth'})}if(db){const s=shops.find(x=>x.id===db.dataset.del);if(s&&confirm(`اطلاعات «${s.name}» از این پنل حذف شود؟`)){shops=shops.filter(x=>x.id!==s.id);persist();if(editId===s.id)reset()}}});$('backup').addEventListener('click',()=>{const b=new Blob([JSON.stringify({app:'Bizaap-subscriptions',version:1,shops},null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='bizaap-subscriptions-backup.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)});$('restoreBtn').addEventListener('click',()=>$('restore').click());$('restore').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;try{const data=JSON.parse(await file.text()),arr=Array.isArray(data)?data:data.shops;if(!Array.isArray(arr))throw Error();if(!confirm('اطلاعات فعلی با بکاپ جایگزین شود؟'))return;shops=arr.filter(s=>s&&s.name&&s.url&&s.startDate&&s.endDate).map(s=>({...s,id:s.id||('shop_'+Date.now()+Math.random())}));persist();reset();alert('بکاپ بازیابی شد.')}catch{alert('فایل بکاپ معتبر نیست.')}finally{e.target.value=''}});load();render()})();
-</script></body></html>
+"use strict";
+
+const KEY = "bizaap_subscription_manager_v1";
+const $ = id => document.getElementById(id);
+
+const cities = {
+"آذربایجان شرقی":["تبریز","مراغه","مرند","میانه","اهر","بناب","سراب","شبستر"],
+"آذربایجان غربی":["ارومیه","خوی","بوکان","مهاباد","میاندوآب","سلماس","نقده"],
+"اردبیل":["اردبیل","پارس‌آباد","مشگین‌شهر","خلخال","گرمی"],
+"اصفهان":["اصفهان","کاشان","خمینی‌شهر","نجف‌آباد","شاهین‌شهر","فولادشهر","فلاورجان"],
+"البرز":["کرج","فردیس","محمدشهر","ماهدشت","نظرآباد","هشتگرد","اشتهارد","چهارباغ"],
+"ایلام":["ایلام","دهلران","آبدانان","ایوان","دره‌شهر"],
+"بوشهر":["بوشهر","برازجان","گناوه","کنگان","جم","خورموج","عسلویه"],
+"تهران":["تهران","اسلامشهر","شهریار","قدس","ملارد","پاکدشت","قرچک","ورامین","دماوند","پردیس","ری","رباط‌کریم"],
+"چهارمحال و بختیاری":["شهرکرد","بروجن","فارسان","لردگان","فرخ‌شهر"],
+"خراسان جنوبی":["بیرجند","قائن","فردوس","طبس","نهبندان"],
+"خراسان رضوی":["مشهد","نیشابور","سبزوار","تربت‌حیدریه","کاشمر","قوچان","تربت‌جام","گناباد"],
+"خراسان شمالی":["بجنورد","شیروان","اسفراین","جاجرم","فاروج"],
+"خوزستان":["اهواز","دزفول","آبادان","خرمشهر","ماهشهر","بهبهان","اندیمشک","شوشتر"],
+"زنجان":["زنجان","ابهر","خرمدره","قیدار"],
+"سمنان":["سمنان","شاهرود","دامغان","گرمسار"],
+"سیستان و بلوچستان":["زاهدان","زابل","چابهار","ایرانشهر","خاش","سراوان"],
+"فارس":["شیراز","مرودشت","کازرون","جهرم","فسا","لار","داراب","آباده"],
+"قزوین":["قزوین","تاکستان","الوند","آبیک"],
+"قم":["قم","جعفریه","سلفچگان"],
+"کردستان":["سنندج","سقز","مریوان","بانه","قروه","کامیاران"],
+"کرمان":["کرمان","رفسنجان","سیرجان","جیرفت","بم","زرند"],
+"کرمانشاه":["کرمانشاه","اسلام‌آباد غرب","جوانرود","کنگاور","هرسین","پاوه"],
+"کهگیلویه و بویراحمد":["یاسوج","گچساران","دهدشت","لیکک"],
+"گلستان":["گرگان","گنبدکاووس","علی‌آباد کتول","آق‌قلا","بندرترکمن"],
+"گیلان":["رشت","بندرانزلی","لاهیجان","لنگرود","رودسر","آستارا","تالش"],
+"لرستان":["خرم‌آباد","بروجرد","دورود","الیگودرز","کوهدشت","ازنا"],
+"مازندران":["ساری","بابل","آمل","قائم‌شهر","بابلسر","نوشهر","چالوس","تنکابن"],
+"مرکزی":["اراک","ساوه","خمین","محلات","دلیجان"],
+"هرمزگان":["بندرعباس","میناب","قشم","کیش","بندرلنگه","جاسک"],
+"همدان":["همدان","ملایر","نهاوند","تویسرکان","اسدآباد"],
+"یزد":["یزد","میبد","اردکان","بافق","مهریز"]
+};
+
+const province = $("province");
+const city = $("city");
+
+Object.keys(cities).forEach(name => {
+ const o = document.createElement("option");
+ o.value = name; o.textContent = name; province.appendChild(o);
+});
+
+province.addEventListener("change", () => {
+ city.innerHTML = "";
+ const list = cities[province.value] || [];
+ city.disabled = !list.length;
+ const first = document.createElement("option");
+ first.value = "";
+ first.textContent = list.length ? "انتخاب شهر" : "ابتدا استان را انتخاب کنید";
+ city.appendChild(first);
+ list.forEach(name => {
+  const o = document.createElement("option");
+  o.value = name; o.textContent = name; city.appendChild(o);
+ });
+});
+
+function latin(s) {
+ return String(s ?? "")
+ .replace(/[۰-۹]/g, c => "۰۱۲۳۴۵۶۷۸۹".indexOf(c))
+ .replace(/[٠-٩]/g, c => "٠١٢٣٤٥٦٧٨٩".indexOf(c))
+ .trim();
+}
+function fa(s) {
+ return String(s).replace(/\d/g, d => "۰۱۲۳۴۵۶۷۸۹"[d]);
+}
+const fmt = new Intl.DateTimeFormat("en-US-u-ca-persian-nu-latn", {
+ year:"numeric",month:"numeric",day:"numeric",timeZone:"UTC"
+});
+function parts(date) {
+ const p = {};
+ fmt.formatToParts(date).forEach(x => {
+  if (x.type === "year") p.y = +x.value;
+  if (x.type === "month") p.m = +x.value;
+  if (x.type === "day") p.d = +x.value;
+ });
+ return p;
+}
+function yearStart(y) {
+ for (let d = 19; d <= 22; d++) {
+  const date = new Date(Date.UTC(y + 621, 2, d));
+  const p = parts(date);
+  if (p.y === y && p.m === 1 && p.d === 1) return date;
+ }
+ throw Error("تبدیل تقویم شمسی در این مرورگر انجام نشد.");
+}
+function parseDate(input) {
+ const s = latin(input).replace(/[.\-]/g, "/");
+ const m = s.match(/^(\d{4})\/(\d{1,2})\/(\d{1,2})$/);
+ if (!m) throw Error("تاریخ را به شکل ۱۴۰۵/۰۸/۰۱ وارد کن.");
+ const y = +m[1], mo = +m[2], d = +m[3];
+ if (y < 1300 || y > 1600 || mo < 1 || mo > 12 || d < 1)
+  throw Error("تاریخ واردشده معتبر نیست.");
+ const start = yearStart(y);
+ const next = yearStart(y + 1);
+ const yearDays = Math.round((next - start) / 86400000);
+ const monthDays = mo <= 6 ? 31 : mo <= 11 ? 30 : yearDays - 336;
+ if (d > monthDays) throw Error("روز واردشده در این ماه معتبر نیست.");
+ const offset = mo <= 6 ? (mo - 1) * 31 + d - 1 : 186 + (mo - 7) * 30 + d - 1;
+ const dt = new Date(start.getTime() + offset * 86400000);
+ return new Date(dt.getUTCFullYear(), dt.getUTCMonth(), dt.getUTCDate());
+}
+function dateFa(dt) {
+ const p = parts(new Date(Date.UTC(dt.getFullYear(),dt.getMonth(),dt.getDate())));
+ return fa(p.y + "/" + String(p.m).padStart(2,"0") + "/" + String(p.d).padStart(2,"0"));
+}
+function today() {
+ const d = new Date();
+ return new Date(d.getFullYear(),d.getMonth(),d.getDate());
+}
+function daysLeft(shop) {
+ return Math.round((parseDate(shop.endDate) - today()) / 86400000);
+}
+function status(shop) {
+ try {
+  const n = daysLeft(shop);
+  if (n < 0) return {key:"expired",label:"منقضی‌شده",days:n};
+  if (n === 0) return {key:"soon",label:"پایان اشتراک امروز",days:n};
+  if (n <= 7) return {key:"soon",label:fa(n)+" روز تا پایان",days:n};
+  return {key:"active",label:"فعال",days:n};
+ } catch {
+  return {key:"expired",label:"تاریخ نامعتبر",days:-9999};
+ }
+}
+function escapeHtml(s) {
+ return String(s ?? "").replace(/[&<>"']/g, c => ({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[c]));
+}
+function urlOf(s) {
+ let v = String(s || "").trim();
+ if (!v) return "";
+ try {
+  if (!/^https?:\/\//i.test(v)) v = "https://" + v;
+  const u = new URL(v);
+  return ["http:","https:"].includes(u.protocol) ? u.href : "";
+ } catch { return ""; }
+}
+function phoneOf(s) {
+ return latin(s).replace(/[^\d+]/g,"");
+}
+function newId() {
+ return Date.now().toString(36) + Math.random().toString(36).slice(2,8);
+}
+function load() {
+ try {
+  const v = JSON.parse(localStorage.getItem(KEY) || "[]");
+  if (!Array.isArray(v)) return [];
+  return v.map(s => ({
+   ...s,
+   id: s.id || newId(),
+   shopName: s.shopName || s.name || "",
+   managerName: s.managerName || "",
+   managerPhone: s.managerPhone || "",
+   province: s.province || "",
+   city: s.city || "",
+   address: s.address || s.streetAddress || "",
+   siteUrl: s.siteUrl || s.url || "",
+   startDate: s.startDate || "",
+   endDate: s.endDate || ""
+  }));
+ } catch { return []; }
+}
+let shops = load();
+let warningsOnly = true;
+function save() {
+ localStorage.setItem(KEY,JSON.stringify(shops));
+}
+function contact(s) {
+ const p = phoneOf(s.managerPhone);
+ return p
+  ? `<a class="btn call small" href="tel:${escapeHtml(p)}">☎ تماس با مشتری</a>`
+  : `<button class="neutral small" disabled>شماره ثبت نشده</button>`;
+}
+function card(s) {
+ const st = status(s);
+ const u = urlOf(s.siteUrl);
+ const address = [s.province,s.city,s.address].filter(Boolean).join("، ");
+ return `<article class="shop">
+  <div class="shop-top">
+   <div>
+    <div class="shop-name">${escapeHtml(s.shopName)}</div>
+    <div class="hint" style="margin-top:6px">${escapeHtml(s.managerName || "نام مدیر ثبت نشده")}${s.managerPhone ? " · "+escapeHtml(s.managerPhone):""}</div>
+   </div>
+   <span class="status ${st.key}">${escapeHtml(st.label)}</span>
+  </div>
+  <div class="meta-grid">
+   <div class="meta"><span>شروع اشتراک</span>${escapeHtml(s.startDate || "—")}</div>
+   <div class="meta"><span>پایان اشتراک</span>${escapeHtml(s.endDate || "—")}</div>
+   <div class="meta"><span>وب‌سایت</span>${u ? `<a href="${escapeHtml(u)}" target="_blank" rel="noopener noreferrer">${escapeHtml(s.siteUrl)}</a>`:"ثبت نشده"}</div>
+   <div class="meta"><span>آدرس</span>${escapeHtml(address || "ثبت نشده")}</div>
+  </div>
+  <div class="shop-actions">
+   ${contact(s)}
+   <button class="secondary small" data-act="edit" data-id="${escapeHtml(s.id)}">ویرایش</button>
+   <button class="secondary small" data-act="extend" data-id="${escapeHtml(s.id)}">تمدید ۳۰ روزه</button>
+   <button class="danger small" data-act="delete" data-id="${escapeHtml(s.id)}">حذف</button>
+  </div>
+ </article>`;
+}
+function render() {
+ const sts = shops.map(status);
+ $("total").textContent = fa(shops.length);
+ $("activeCount").textContent = fa(sts.filter(x=>x.key==="active").length);
+ $("warningCount").textContent = fa(sts.filter(x=>x.key!=="active").length);
+
+ const warn = shops.filter(s=>status(s).key!=="active")
+  .sort((a,b)=>status(a).days-status(b).days);
+ $("warningList").innerHTML = warn.length
+  ? warn.map(card).join("")
+  : '<div class="empty">هیچ اشتراک منقضی یا نزدیک به پایان وجود ندارد.</div>';
+
+ const q = $("search").value.trim().toLowerCase();
+ const f = $("filter").value;
+ let result = shops.filter(s => {
+  const text = [s.shopName,s.managerName,s.managerPhone,s.siteUrl,s.province,s.city,s.address].join(" ").toLowerCase();
+  return text.includes(q) && (f==="all" || status(s).key===f);
+ });
+ $("shopList").innerHTML = result.length
+  ? result.map(card).join("")
+  : '<div class="empty">فروشگاهی پیدا نشد.</div>';
+
+ $("warningToggle").textContent = warningsOnly ? "نمایش همه" : "فقط هشدارها";
+}
+function clearForm() {
+ $("shopForm").reset();
+ $("editId").value = "";
+ city.innerHTML = '<option value="">ابتدا استان را انتخاب کنید</option>';
+ city.disabled = true;
+ $("formTitle").textContent = "ثبت فروشگاه جدید";
+ $("saveBtn").textContent = "ثبت فروشگاه";
+ $("cancelBtn").classList.add("hidden");
+}
+function editShop(id) {
+ const s = shops.find(x=>x.id===id);
+ if (!s) return;
+ $("editId").value = s.id;
+ $("shopName").value = s.shopName;
+ $("managerName").value = s.managerName;
+ $("managerPhone").value = s.managerPhone;
+ province.value = s.province;
+ province.dispatchEvent(new Event("change"));
+ city.value = s.city;
+ $("address").value = s.address;
+ $("siteUrl").value = s.siteUrl;
+ $("startDate").value = s.startDate;
+ $("endDate").value = s.endDate;
+ $("formTitle").textContent = "ویرایش اطلاعات فروشگاه";
+ $("saveBtn").textContent = "ذخیره تغییرات";
+ $("cancelBtn").classList.remove("hidden");
+ $("formPanel").scrollIntoView({behavior:"smooth",block:"start"});
+}
+function extendShop(id) {
+ const s = shops.find(x=>x.id===id);
+ if (!s) return;
+ try {
+  const old = parseDate(s.endDate);
+  const base = old < today() ? today() : old;
+  base.setDate(base.getDate()+30);
+  s.endDate = dateFa(base);
+  save(); render();
+  alert("اشتراک ۳۰ روز تمدید شد.\nتاریخ پایان جدید: "+s.endDate);
+ } catch(e) {
+  alert("تاریخ پایان این فروشگاه معتبر نیست. ابتدا آن را ویرایش کن.");
+ }
+}
+
+$("shopForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ try {
+  const name = $("shopName").value.trim();
+  const start = $("startDate").value.trim();
+  const end = $("endDate").value.trim();
+  const startParsed = parseDate(start);
+  const endParsed = parseDate(end);
+  if (!name) throw Error("نام فروشگاه را وارد کن.");
+  if (endParsed < startParsed) throw Error("تاریخ پایان نمی‌تواند قبل از تاریخ شروع باشد.");
+
+  const id = $("editId").value;
+  const old = shops.find(s=>s.id===id);
+  const record = {
+   id: id || newId(),
+   shopName:name,
+   managerName:$("managerName").value.trim(),
+   managerPhone:$("managerPhone").value.trim(),
+   province:province.value,
+   city:city.value,
+   address:$("address").value.trim(),
+   siteUrl:$("siteUrl").value.trim(),
+   startDate:dateFa(startParsed),
+   endDate:dateFa(endParsed),
+   createdAt:old?.createdAt || new Date().toISOString()
+  };
+  if (record.siteUrl && !urlOf(record.siteUrl))
+   throw Error("آدرس وب‌سایت معتبر نیست.");
+  if (id) shops = shops.map(s=>s.id===id ? record : s);
+  else shops.unshift(record);
+
+  save(); clearForm(); render();
+  alert(id ? "اطلاعات فروشگاه اصلاح شد." : "فروشگاه با موفقیت ثبت شد.");
+ } catch(err) {
+  alert(err.message || "اطلاعات واردشده معتبر نیست.");
+ }
+});
+
+$("cancelBtn").addEventListener("click",clearForm);
+$("clearBtn").addEventListener("click",clearForm);
+$("search").addEventListener("input",render);
+$("filter").addEventListener("change",render);
+
+$("warningToggle").addEventListener("click",()=>{
+ warningsOnly = !warningsOnly;
+ $("filter").value = warningsOnly ? "all" : "all";
+ if (!warningsOnly) $("search").value = "";
+ render();
+ if (!warningsOnly) $("shopList").scrollIntoView({behavior:"smooth"});
+ else $("warningList").scrollIntoView({behavior:"smooth",block:"center"});
+});
+
+document.addEventListener("click",e=>{
+ const b = e.target.closest("button[data-act]");
+ if (!b) return;
+ const id = b.dataset.id;
+ if (b.dataset.act==="edit") editShop(id);
+ if (b.dataset.act==="extend") extendShop(id);
+ if (b.dataset.act==="delete") {
+  const s = shops.find(x=>x.id===id);
+  if (!s) return;
+  if (confirm("فروشگاه «"+s.shopName+"» حذف شود؟")) {
+   shops = shops.filter(x=>x.id!==id);
+   save(); render();
+  }
+ }
+});
+
+$("backupBtn").addEventListener("click",()=>{
+ const data = {
+  app:"Bizaap Subscription Manager",
+  version:1,
+  exportedAt:new Date().toISOString(),
+  shops
+ };
+ const blob = new Blob([JSON.stringify(data,null,2)],{type:"application/json;charset=utf-8"});
+ const url = URL.createObjectURL(blob);
+ const a = document.createElement("a");
+ a.href = url;
+ a.download = "Bizaap-Subscriptions-Backup.json";
+ document.body.appendChild(a); a.click(); a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+});
+
+$("restoreBtn").addEventListener("click",()=>$("backupFile").click());
+$("backupFile").addEventListener("change",async e=>{
+ const file = e.target.files[0];
+ if (!file) return;
+ try {
+  const data = JSON.parse(await file.text());
+  const list = Array.isArray(data) ? data : data.shops;
+  if (!Array.isArray(list)) throw Error("ساختار فایل پشتیبان معتبر نیست.");
+  const valid = list.map(s=>{
+   if (!s || typeof s!=="object") throw Error("اطلاعات یک فروشگاه معتبر نیست.");
+   return {
+    id:String(s.id || newId()),
+    shopName:String(s.shopName || s.name || ""),
+    managerName:String(s.managerName || ""),
+    managerPhone:String(s.managerPhone || ""),
+    province:String(s.province || ""),
+    city:String(s.city || ""),
+    address:String(s.address || s.streetAddress || ""),
+    siteUrl:String(s.siteUrl || s.url || ""),
+    startDate:String(s.startDate || ""),
+    endDate:String(s.endDate || "")
+   };
+  });
+  if (!confirm("بازیابی، فهرست فعلی را جایگزین می‌کند. ادامه می‌دهی؟")) return;
+  shops = valid;
+  save(); clearForm(); render();
+  alert("پشتیبان بازیابی شد.");
+ } catch(err) {
+  alert(err.message || "خواندن فایل پشتیبان ناموفق بود.");
+ } finally {
+  e.target.value = "";
+ }
+});
+
+render();
+</script>
+</body>
+</html>
