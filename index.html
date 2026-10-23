@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#9bdcff">
+  <title>Bizaap | مدیریت فروشگاه</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand"><div class="brand-mark">B</div><div><strong>Bizaap</strong><small>مدیریت هوشمند فروشگاه</small></div></div>
+      <button id="connectFolderBtn" class="connection connection-button" type="button" title="اتصال پوشه دیتابیس"><span id="dbDot" class="dot"></span><span id="dbStatus">دیتابیس متصل نیست</span><span class="connect-label">اتصال پوشه</span></button>
+      <button id="logoutBtn" class="icon-btn hidden" aria-label="خروج" title="خروج">↪</button>
+    </header>
+
+    <main>
+      <section id="loginView" class="login-wrap">
+        <div class="login-art">
+          <div class="orb orb-one"></div><div class="orb orb-two"></div>
+          <span class="eyebrow">LOCAL • FAST • SIMPLE</span>
+          <h1>فروشگاهت،<br><span>همیشه تحت کنترل تو</span></h1>
+          <p>مدیریت کالا، ثبت فروش و تحلیل عملکرد در یک فضای ساده و سریع.</p>
+          <div class="feature-pills"><span>انبار</span><span>فروش</span><span>تحلیل VIP</span></div>
+        </div>
+        <form id="loginForm" class="login-card">
+          <div class="card-icon">↗</div><h2>ورود به Bizaap</h2><p class="muted">برای ادامه وارد حساب مدیریت شو.</p>
+          <label for="username">نام کاربری</label><input id="username" autocomplete="username" value="bizad" required>
+          <label for="password">رمز عبور</label><input id="password" type="password" autocomplete="current-password" value="1234" placeholder="رمز عبور" required>
+          <p id="loginError" class="error hidden">نام کاربری یا رمز عبور اشتباه است.</p>
+          <button class="primary-btn full" type="submit">ورود به پنل <span>←</span></button>
+          <small class="security-note">پس از ورود، یک پوشه در گوشی انتخاب کن؛ اطلاعات کالاها و فاکتورها در فایل‌های همان پوشه ذخیره می‌شوند.</small>
+        </form>
+      </section>
+
+      <section id="appView" class="hidden">
+        <div class="welcome-row"><div><span class="eyebrow">پنل مدیریت فروشگاه</span><h1>خلاصه وضعیت فروشگاه</h1><p class="muted">مدیریت کالاها، فروش و گزارش‌های عملکرد.</p></div><button id="backupBtn" class="outline-btn">خروجی / بکاپ</button></div>
+        <nav class="main-nav" aria-label="منوی اصلی">
+          <button class="nav-btn active" data-page="home"><span>⌂</span> خانه</button>
+          <button class="nav-btn" data-page="inventory"><span>▦</span> انبار</button>
+          <button class="nav-btn" data-page="sales"><span>↗</span> فروش</button>
+        </nav>
+
+        <section id="page-home" class="page">
+          <div class="stats-grid">
+            <article class="stat-card"><div class="stat-top"><span>تعداد کالاها</span><span class="stat-icon">▦</span></div><strong id="statProducts">۰</strong><small>کالای ثبت‌شده</small></article>
+            <article class="stat-card"><div class="stat-top"><span>موجودی کل</span><span class="stat-icon">□</span></div><strong id="statStock">۰</strong><small>عدد کالا در انبار</small></article>
+            <article class="stat-card"><div class="stat-top"><span>فروش امروز</span><span class="stat-icon">↗</span></div><strong id="statRevenue">۰</strong><small>تومان</small></article>
+            <article class="stat-card"><div class="stat-top"><span>فاکتور امروز</span><span class="stat-icon">▤</span></div><strong id="statInvoices">۰</strong><small>فاکتور ثبت‌شده</small></article>
+          </div>
+          <div class="content-grid">
+            <article class="panel"><div class="panel-heading"><div><h3>دسترسی سریع</h3><p class="muted">کارهای روزمره را سریع انجام بده.</p></div></div>
+              <div class="quick-actions"><button class="quick-card" data-go="inventory"><span class="quick-icon">＋</span><b>ثبت کالای جدید</b><small>افزودن به انبار</small></button><button class="quick-card" data-go="sales"><span class="quick-icon">↗</span><b>ثبت فروش</b><small>ساخت فاکتور</small></button><button id="openVip" class="quick-card vip-quick"><span class="quick-icon">✦</span><b>مدیریت و VIP</b><small>تحلیل فروشگاه</small></button></div>
+            </article>
+            <article class="panel"><div class="panel-heading"><div><h3>هشدار موجودی</h3><p class="muted">کالاهای کم‌موجودی</p></div><span class="soft-badge" id="lowCount">۰ مورد</span></div><div id="lowStockList" class="compact-list empty-state">فعلاً کالایی برای هشدار وجود ندارد.</div></article>
+          </div>
+          <article class="panel"><div class="panel-heading"><div><h3>آخرین فاکتورها</h3><p class="muted">آخرین فروش‌های ثبت‌شده</p></div><button class="text-btn" data-go="sales">رفتن به فروش ←</button></div><div id="recentInvoices" class="table-wrap"></div></article>
+        </section>
+
+        <section id="page-inventory" class="page hidden">
+          <div class="section-heading"><div><span class="eyebrow">مدیریت کالا</span><h2>انبار</h2><p class="muted">ثبت و پیگیری کالاها و موجودی.</p></div><button id="scanBtn" class="primary-btn">▦ اسکن بارکد</button></div>
+          <article class="panel">
+            <div class="panel-heading"><div><h3 id="productFormTitle">ثبت کالای جدید</h3><p class="muted">بارکدخوان خارجی را باز کن و بارکد را در کادر وارد کن.</p></div></div>
+            <form id="productForm" class="form-grid">
+              <input type="hidden" id="productId">
+              <div class="field"><label for="barcode">بارکد</label><div class="barcode-row"><input id="barcode" placeholder="بارکد را اسکن یا وارد کن"><button type="button" id="externalScannerBtn" class="outline-btn">بازکردن اسکنر</button></div><small class="hint">اسکنر Binary Eye باز می‌شود و در صورت اجرای سایت با HTTPS، نتیجه اسکن به همین کادر برمی‌گردد.</small></div>
+              <div class="field"><label for="productName">نام کالا</label><input id="productName" placeholder="مثلاً نوشابه خانواده" required></div>
+              <div class="field"><label for="purchasePrice">قیمت خرید (تومان)</label><input id="purchasePrice" type="number" min="0" step="any" placeholder="۰" required></div>
+              <div class="field"><label for="salePrice">قیمت فروش (تومان)</label><input id="salePrice" type="number" min="0" step="any" placeholder="۰" required></div>
+              <div class="field"><label for="quantity">تعداد موجودی</label><input id="quantity" type="number" min="0" step="1" placeholder="۰" required></div>
+              <div class="form-actions"><button class="primary-btn" type="submit">ذخیره کالا</button><button class="outline-btn hidden" type="button" id="cancelEdit">انصراف از ویرایش</button></div>
+            </form>
+          </article>
+          <article class="panel"><div class="panel-heading"><div><h3>فهرست کالاها</h3><p class="muted">جست‌وجو با نام یا بارکد</p></div><span class="soft-badge" id="productCountBadge">۰ کالا</span></div><input id="inventorySearch" class="search-input" placeholder="جست‌وجوی کالا..."><div id="inventoryTable" class="table-wrap"></div></article>
+        </section>
+
+        <section id="page-sales" class="page hidden">
+          <div class="section-heading"><div><span class="eyebrow">صندوق سبک</span><h2>ثبت فروش</h2><p class="muted">کالا را انتخاب کن، به فاکتور اضافه کن و فروش را نهایی کن.</p></div></div>
+          <div class="content-grid sales-grid">
+            <article class="panel"><div class="panel-heading"><div><h3>افزودن کالا به فاکتور</h3><p class="muted">بارکد یا نام کالا را وارد کن.</p></div></div>
+              <form id="addToCartForm" class="stack-form"><label for="saleLookup">کالا / بارکد</label><div class="barcode-row"><input id="saleLookup" placeholder="بارکد یا نام کالا" required><button id="saleScanBtn" type="button" class="outline-btn">اسکن</button></div><div id="saleMatches" class="suggestions hidden"></div><label for="saleQty">تعداد</label><input id="saleQty" type="number" min="1" step="1" value="1" required><button class="primary-btn full" type="submit">افزودن به فاکتور</button></form>
+            </article>
+            <article class="panel"><div class="panel-heading"><div><h3>فاکتور جاری</h3><span class="soft-badge" id="cartCount">۰ قلم</span></div><button id="clearCartBtn" class="text-btn">پاک کردن</button></div><div id="cartItems" class="cart-items empty-state">هنوز کالایی اضافه نشده.</div><div class="cart-total"><span>مبلغ قابل پرداخت</span><strong id="cartTotal">۰ تومان</strong></div><button id="checkoutBtn" class="primary-btn full">ثبت نهایی فروش</button></article>
+          </div>
+          <article class="panel"><div class="panel-heading"><div><h3>سوابق فاکتورها</h3><p class="muted">فاکتورهای ثبت‌شده در این گوشی</p></div></div><div id="invoiceTable" class="table-wrap"></div></article>
+        </section>
+
+        <section id="page-vip" class="page hidden">
+          <div class="section-heading"><div><span class="eyebrow">BIZAAP INSIGHTS</span><h2>مدیریت و تحلیل VIP <span class="vip-star">✦</span></h2><p class="muted">تحلیل‌ها از فاکتورهای ثبت‌شده در همین دیتابیس محلی محاسبه می‌شوند.</p></div><span class="soft-badge">نسخه آزمایشی</span></div>
+          <div class="vip-banner"><div><span class="eyebrow">گزارش عملکرد</span><h2>تصویر واقعی فروشگاهت</h2><p>هرچه فروش‌های بیشتری ثبت کنی، تحلیل‌ها کاربردی‌تر می‌شوند.</p></div><div class="banner-symbol">✦</div></div>
+          <div class="stats-grid vip-stats"><article class="stat-card"><div class="stat-top"><span>کل فروش</span><span class="stat-icon">↗</span></div><strong id="vipRevenue">۰</strong><small>تومان</small></article><article class="stat-card"><div class="stat-top"><span>سود ناخالص تخمینی</span><span class="stat-icon">◇</span></div><strong id="vipProfit">۰</strong><small>تومان، بر اساس قیمت خرید فعلی</small></article><article class="stat-card"><div class="stat-top"><span>تعداد فاکتورها</span><span class="stat-icon">▤</span></div><strong id="vipInvoices">۰</strong><small>فاکتور ثبت‌شده</small></article><article class="stat-card"><div class="stat-top"><span>میانگین فاکتور</span><span class="stat-icon">≈</span></div><strong id="vipAverage">۰</strong><small>تومان</small></article></div>
+          <div class="content-grid"><article class="panel"><div class="panel-heading"><div><h3>پرفروش‌ترین کالاها</h3><p class="muted">بر اساس تعداد فروخته‌شده</p></div></div><div id="topProducts" class="rank-list empty-state">هنوز اطلاعات کافی ثبت نشده است.</div></article><article class="panel"><div class="panel-heading"><div><h3>کم‌فروش / بدون فروش</h3><p class="muted">کالاهای بدون فروش در سوابق فعلی</p></div></div><div id="slowProducts" class="rank-list empty-state">هنوز اطلاعات کافی ثبت نشده است.</div></article></div>
+          <div class="content-grid"><article class="panel"><div class="panel-heading"><div><h3>فروش روزانه</h3><p class="muted">هفت روز اخیر</p></div></div><div id="salesChart" class="bar-chart empty-state">برای نمایش نمودار، فروش ثبت کن.</div></article><article class="panel"><div class="panel-heading"><div><h3>توصیه‌های مدیریتی</h3><p class="muted">بر پایه موجودی و فروش ثبت‌شده</p></div></div><div id="vipAdvice" class="advice-list"></div></article></div>
+          <article class="panel"><div class="panel-heading"><div><h3>مدیریت دسترسی VIP</h3><p class="muted">این بخش در نسخه فعلی فقط نمایشی و محلی است.</p></div></div><div class="notice"><strong>محدودیت مهم:</strong> این سه فایل به‌تنهایی نمی‌توانند پرداخت واقعی را تأیید کنند یا اشتراک کاربران دیگر را از راه دور مدیریت کنند. برای نسخه واقعی چندکاربره، بخش احراز هویت و اشتراک باید روی سرور امن باشد.</div><div class="vip-admin-row"><label class="toggle-label"><input type="checkbox" id="vipToggle"> فعال‌سازی نمایش VIP در همین مرورگر</label><span id="vipLocalStatus" class="soft-badge">محلی</span></div></article>
+        </section>
+      </section>
+    </main>
+    <footer><span> BIZAAP LITE </span><span>نسخه سبک مدیریت فروشگاه</span></footer>
+  </div>
+  <div id="invoiceModal" class="invoice-modal hidden" aria-hidden="true" role="dialog" aria-modal="true" aria-label="مشاهده فاکتور">
+    <div class="invoice-modal-card"><div class="invoice-modal-actions"><strong>مشاهده فاکتور</strong><div><button id="invoiceModalPrint" class="primary-btn">چاپ / ذخیره PDF</button><button id="invoiceModalClose" class="outline-btn">بستن</button></div></div><div id="invoiceModalBody"></div></div>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+  <input id="barcodeFallback" class="visually-hidden" inputmode="numeric" aria-label="ورود بارکد">
+  <script src="script.js"></script>
+</body>
+</html>
