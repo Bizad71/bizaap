@@ -1,108 +1,166 @@
 <!doctype html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#9bdcff">
-  <title>Bizaap | مدیریت فروشگاه</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Bizaap | مدیریت اشتراک‌ها</title>
+<style>
+:root{--bg:#080c14;--panel:#111827;--panel2:#172235;--line:#263449;--text:#eef4ff;--muted:#9baac0;--blue:#2684ff;--green:#28c88a;--yellow:#ffc857;--red:#ff667a}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% -20%,#12305a 0,transparent 48%),var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif;line-height:1.65}
+main{max-width:1100px;margin:auto;padding:20px 14px 40px}.top{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:18px}.brand{display:flex;align-items:center;gap:12px}.logo{width:48px;height:48px;border-radius:15px;background:linear-gradient(145deg,#1684ff,#0750a8);display:grid;place-items:center;font-weight:900;font-size:23px;box-shadow:0 8px 28px #0879e633}.brand h1{font-size:22px;margin:0}.brand p{margin:2px 0 0;color:var(--muted);font-size:13px}.pill{font-size:12px;border:1px solid var(--line);border-radius:99px;padding:5px 10px;color:var(--muted)}
+.panel{background:linear-gradient(145deg,#121b2b,#0e1522);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:15px;box-shadow:0 12px 35px #0002}.panel h2{font-size:16px;margin:0 0 12px}.help{font-size:13px;color:var(--muted);margin:4px 0 12px}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:10px}.field{grid-column:span 4;min-width:0}.field.wide{grid-column:span 6}.field.full{grid-column:1/-1}label{display:block;font-size:12px;color:var(--muted);margin-bottom:5px}input,textarea,select{width:100%;background:#09111e;border:1px solid #2b3a51;border-radius:10px;padding:11px;color:var(--text);font:inherit;outline:none}input:focus,textarea:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px #2684ff20}textarea{min-height:72px;resize:vertical}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.btn{border:1px solid var(--line);background:#1a2638;color:var(--text);border-radius:10px;padding:10px 14px;font:inherit;font-size:13px;cursor:pointer}.btn.primary{background:var(--blue);border-color:var(--blue);color:white;font-weight:700}.btn.danger{border-color:#713040;color:#ffb2bc;background:#301824}.btn:disabled{opacity:.45;cursor:not-allowed}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:15px}.stat{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:14px}.stat .label{color:var(--muted);font-size:12px}.stat strong{display:block;font-size:26px;margin-top:5px}.stat.warning strong{color:var(--yellow)}.stat.expired strong{color:var(--red)}.stat.active strong{color:var(--green)}
+.status{padding:8px 10px;border-radius:10px;background:#0a1422;border:1px solid var(--line);font-size:13px;color:var(--muted);white-space:pre-wrap}.status.good{color:#9cf0cd;border-color:#205d49}.status.bad{color:#ffb2bc;border-color:#713040}.status.warn{color:#ffe1a0;border-color:#735b25}
+.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.toolbar input{flex:1;min-width:160px}.toolbar select{width:auto;min-width:145px}.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}table{width:100%;border-collapse:collapse;min-width:760px;background:#0d1522}th,td{text-align:right;padding:11px 12px;border-bottom:1px solid #202c3d;font-size:13px;vertical-align:top}th{color:var(--muted);font-weight:500;background:#121d2d}tr:last-child td{border-bottom:0}.customer{font-weight:700}.sub{font-size:11px;color:var(--muted);overflow-wrap:anywhere}.tag{display:inline-block;border-radius:99px;padding:3px 8px;font-size:11px;white-space:nowrap}.tag.active{color:#8ff0c7;background:#12372c}.tag.soon{color:#ffe09a;background:#403319}.tag.expired{color:#ffb2bc;background:#431d29}.tag.paused{color:#c7d2e5;background:#273449}.rowactions{display:flex;gap:5px;flex-wrap:wrap}.mini{padding:5px 8px;font-size:11px}.empty{text-align:center;padding:28px;color:var(--muted)}.foot{font-size:12px;color:var(--muted);text-align:center;margin-top:18px}
+@media(max-width:700px){main{padding:14px 10px 30px}.field,.field.wide{grid-column:1/-1}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stat strong{font-size:23px}.panel{padding:13px}.brand h1{font-size:19px}}
+</style>
 </head>
 <body>
-  <div class="app-shell">
-    <header class="topbar">
-      <div class="brand"><div class="brand-mark">B</div><div><strong>Bizaap</strong><small>مدیریت هوشمند فروشگاه</small></div></div>
-      <button id="connectFolderBtn" class="connection connection-button" type="button" title="اتصال پوشه دیتابیس"><span id="dbDot" class="dot"></span><span id="dbStatus">دیتابیس متصل نیست</span><span class="connect-label">اتصال پوشه</span></button>
-      <button id="logoutBtn" class="icon-btn hidden" aria-label="خروج" title="خروج">↪</button>
-    </header>
+<main>
+  <header class="top">
+    <div class="brand"><div class="logo">B</div><div><h1>Bizaap | مدیریت اشتراک‌ها</h1><p>پنل خصوصی خودت؛ بدون نمایش در سایت مشتری‌ها</p></div></div>
+    <span class="pill">مدیریت دستی تمدید و غیرفعال‌سازی</span>
+  </header>
 
-    <main>
-      <section id="loginView" class="login-wrap">
-        <div class="login-art">
-          <div class="orb orb-one"></div><div class="orb orb-two"></div>
-          <span class="eyebrow">LOCAL • FAST • SIMPLE</span>
-          <h1>فروشگاهت،<br><span>همیشه تحت کنترل تو</span></h1>
-          <p>مدیریت کالا، ثبت فروش و تحلیل عملکرد در یک فضای ساده و سریع.</p>
-          <div class="feature-pills"><span>انبار</span><span>فروش</span><span>تحلیل VIP</span></div>
-        </div>
-        <form id="loginForm" class="login-card">
-          <div class="card-icon">↗</div><h2>ورود به Bizaap</h2><p class="muted">برای ادامه وارد حساب مدیریت شو.</p>
-          <label for="username">نام کاربری</label><input id="username" autocomplete="username" value="bizad" required>
-          <label for="password">رمز عبور</label><input id="password" type="password" autocomplete="current-password" value="1234" placeholder="رمز عبور" required>
-          <p id="loginError" class="error hidden">نام کاربری یا رمز عبور اشتباه است.</p>
-          <button class="primary-btn full" type="submit">ورود به پنل <span>←</span></button>
-          <small class="security-note">پس از ورود، یک پوشه در گوشی انتخاب کن؛ اطلاعات کالاها و فاکتورها در فایل‌های همان پوشه ذخیره می‌شوند.</small>
-        </form>
-      </section>
+  <section class="panel">
+    <h2>۱. اتصال به مخزن خصوصی مدیریت اشتراک</h2>
+    <p class="help">یک مخزن خصوصی جداگانه بساز و نام مالک، نام مخزن و توکن دسترسی را وارد کن. اطلاعات اشتراک‌ها در فایل <b>subscriptions.json</b> همان مخزن ذخیره می‌شود.</p>
+    <div class="grid">
+      <div class="field"><label for="owner">نام کاربری مالک GitHub</label><input id="owner" autocomplete="off" placeholder="مثلاً your-username"></div>
+      <div class="field"><label for="repo">نام مخزن خصوصی مدیریت</label><input id="repo" autocomplete="off" placeholder="مثلاً bizaap-subscriptions"></div>
+      <div class="field"><label for="branch">شاخه (Branch)</label><input id="branch" value="main" autocomplete="off"></div>
+      <div class="field full"><label for="token">GitHub Fine-grained Personal Access Token</label><input id="token" type="password" autocomplete="off" placeholder="توکن فقط در حافظه همین صفحه می‌ماند"></div>
+    </div>
+    <div class="actions"><button class="btn primary" id="connect">اتصال و بارگذاری اطلاعات</button><button class="btn" id="disconnect">پاک‌کردن اتصال از صفحه</button></div>
+    <div id="connection" class="status" style="margin-top:10px">هنوز به مخزن متصل نشده‌ای.</div>
+    <p class="help" style="margin-top:10px">توکن را فقط برای همان مخزن و با دسترسی <b>Contents: Read and write</b> بساز. آن را در فایل‌ها یا مخزن قرار نده. با بستن یا تازه‌سازی صفحه، توکن از حافظه صفحه پاک می‌شود.</p>
+  </section>
 
-      <section id="appView" class="hidden">
-        <div class="welcome-row"><div><span class="eyebrow">پنل مدیریت فروشگاه</span><h1>خلاصه وضعیت فروشگاه</h1><p class="muted">مدیریت کالاها، فروش و گزارش‌های عملکرد.</p></div><button id="backupBtn" class="outline-btn">خروجی / بکاپ</button></div>
-        <nav class="main-nav" aria-label="منوی اصلی">
-          <button class="nav-btn active" data-page="home"><span>⌂</span> خانه</button>
-          <button class="nav-btn" data-page="inventory"><span>▦</span> انبار</button>
-          <button class="nav-btn" data-page="sales"><span>↗</span> فروش</button>
-        </nav>
+  <section class="stats">
+    <div class="stat"><div class="label">کل اشتراک‌ها</div><strong id="countAll">۰</strong></div>
+    <div class="stat active"><div class="label">فعال (بیش از ۷ روز)</div><strong id="countActive">۰</strong></div>
+    <div class="stat warning"><div class="label">پایان در ۷ روز آینده</div><strong id="countSoon">۰</strong></div>
+    <div class="stat expired"><div class="label">منقضی‌شده</div><strong id="countExpired">۰</strong></div>
+  </section>
 
-        <section id="page-home" class="page">
-          <div class="stats-grid">
-            <article class="stat-card"><div class="stat-top"><span>تعداد کالاها</span><span class="stat-icon">▦</span></div><strong id="statProducts">۰</strong><small>کالای ثبت‌شده</small></article>
-            <article class="stat-card"><div class="stat-top"><span>موجودی کل</span><span class="stat-icon">□</span></div><strong id="statStock">۰</strong><small>عدد کالا در انبار</small></article>
-            <article class="stat-card"><div class="stat-top"><span>فروش امروز</span><span class="stat-icon">↗</span></div><strong id="statRevenue">۰</strong><small>تومان</small></article>
-            <article class="stat-card"><div class="stat-top"><span>فاکتور امروز</span><span class="stat-icon">▤</span></div><strong id="statInvoices">۰</strong><small>فاکتور ثبت‌شده</small></article>
-          </div>
-          <div class="content-grid">
-            <article class="panel"><div class="panel-heading"><div><h3>دسترسی سریع</h3><p class="muted">کارهای روزمره را سریع انجام بده.</p></div></div>
-              <div class="quick-actions"><button class="quick-card" data-go="inventory"><span class="quick-icon">＋</span><b>ثبت کالای جدید</b><small>افزودن به انبار</small></button><button class="quick-card" data-go="sales"><span class="quick-icon">↗</span><b>ثبت فروش</b><small>ساخت فاکتور</small></button><button id="openVip" class="quick-card vip-quick"><span class="quick-icon">✦</span><b>مدیریت و VIP</b><small>تحلیل فروشگاه</small></button></div>
-            </article>
-            <article class="panel"><div class="panel-heading"><div><h3>هشدار موجودی</h3><p class="muted">کالاهای کم‌موجودی</p></div><span class="soft-badge" id="lowCount">۰ مورد</span></div><div id="lowStockList" class="compact-list empty-state">فعلاً کالایی برای هشدار وجود ندارد.</div></article>
-          </div>
-          <article class="panel"><div class="panel-heading"><div><h3>آخرین فاکتورها</h3><p class="muted">آخرین فروش‌های ثبت‌شده</p></div><button class="text-btn" data-go="sales">رفتن به فروش ←</button></div><div id="recentInvoices" class="table-wrap"></div></article>
-        </section>
+  <section class="panel" id="editorPanel">
+    <h2 id="formTitle">۲. ثبت اشتراک مشتری</h2>
+    <div class="grid">
+      <div class="field"><label for="customer">نام مشتری / فروشگاه *</label><input id="customer" placeholder="نام فروشگاه" maxlength="100"></div>
+      <div class="field wide"><label for="customerRepo">لینک Repository مشتری *</label><input id="customerRepo" placeholder="https://github.com/username/customer-repo"></div>
+      <div class="field"><label for="startDate">تاریخ شروع اشتراک *</label><input id="startDate" type="date"></div>
+      <div class="field"><label for="endDate">تاریخ پایان اشتراک *</label><input id="endDate" type="date"></div>
+      <div class="field"><label for="manualStatus">وضعیت مدیریتی</label><select id="manualStatus"><option value="active">فعال</option><option value="paused">غیرفعال‌شده توسط من</option></select></div>
+      <div class="field full"><label for="notes">یادداشت خصوصی (مثلاً تاریخ پیامک یا توافق تمدید)</label><textarea id="notes" placeholder="اختیاری"></textarea></div>
+    </div>
+    <div class="actions"><button class="btn primary" id="saveRecord" disabled>ذخیره در مخزن مدیریت</button><button class="btn" id="resetForm">پاک‌کردن فرم</button></div>
+    <div id="saveStatus" class="status" style="margin-top:10px">برای ذخیره، ابتدا به مخزن مدیریت متصل شو.</div>
+  </section>
 
-        <section id="page-inventory" class="page hidden">
-          <div class="section-heading"><div><span class="eyebrow">مدیریت کالا</span><h2>انبار</h2><p class="muted">ثبت و پیگیری کالاها و موجودی.</p></div><button id="scanBtn" class="primary-btn">▦ اسکن بارکد</button></div>
-          <article class="panel">
-            <div class="panel-heading"><div><h3 id="productFormTitle">ثبت کالای جدید</h3><p class="muted">بارکدخوان خارجی را باز کن و بارکد را در کادر وارد کن.</p></div></div>
-            <form id="productForm" class="form-grid">
-              <input type="hidden" id="productId">
-              <div class="field"><label for="barcode">بارکد</label><div class="barcode-row"><input id="barcode" placeholder="بارکد را اسکن یا وارد کن"><button type="button" id="externalScannerBtn" class="outline-btn">بازکردن اسکنر</button></div><small class="hint">اسکنر Binary Eye باز می‌شود و در صورت اجرای سایت با HTTPS، نتیجه اسکن به همین کادر برمی‌گردد.</small></div>
-              <div class="field"><label for="productName">نام کالا</label><input id="productName" placeholder="مثلاً نوشابه خانواده" required></div>
-              <div class="field"><label for="purchasePrice">قیمت خرید (تومان)</label><input id="purchasePrice" type="number" min="0" step="any" placeholder="۰" required></div>
-              <div class="field"><label for="salePrice">قیمت فروش (تومان)</label><input id="salePrice" type="number" min="0" step="any" placeholder="۰" required></div>
-              <div class="field"><label for="quantity">تعداد موجودی</label><input id="quantity" type="number" min="0" step="1" placeholder="۰" required></div>
-              <div class="form-actions"><button class="primary-btn" type="submit">ذخیره کالا</button><button class="outline-btn hidden" type="button" id="cancelEdit">انصراف از ویرایش</button></div>
-            </form>
-          </article>
-          <article class="panel"><div class="panel-heading"><div><h3>فهرست کالاها</h3><p class="muted">جست‌وجو با نام یا بارکد</p></div><span class="soft-badge" id="productCountBadge">۰ کالا</span></div><input id="inventorySearch" class="search-input" placeholder="جست‌وجوی کالا..."><div id="inventoryTable" class="table-wrap"></div></article>
-        </section>
-
-        <section id="page-sales" class="page hidden">
-          <div class="section-heading"><div><span class="eyebrow">صندوق سبک</span><h2>ثبت فروش</h2><p class="muted">کالا را انتخاب کن، به فاکتور اضافه کن و فروش را نهایی کن.</p></div></div>
-          <div class="content-grid sales-grid">
-            <article class="panel"><div class="panel-heading"><div><h3>افزودن کالا به فاکتور</h3><p class="muted">بارکد یا نام کالا را وارد کن.</p></div></div>
-              <form id="addToCartForm" class="stack-form"><label for="saleLookup">کالا / بارکد</label><div class="barcode-row"><input id="saleLookup" placeholder="بارکد یا نام کالا" required><button id="saleScanBtn" type="button" class="outline-btn">اسکن</button></div><div id="saleMatches" class="suggestions hidden"></div><label for="saleQty">تعداد</label><input id="saleQty" type="number" min="1" step="1" value="1" required><button class="primary-btn full" type="submit">افزودن به فاکتور</button></form>
-            </article>
-            <article class="panel"><div class="panel-heading"><div><h3>فاکتور جاری</h3><span class="soft-badge" id="cartCount">۰ قلم</span></div><button id="clearCartBtn" class="text-btn">پاک کردن</button></div><div id="cartItems" class="cart-items empty-state">هنوز کالایی اضافه نشده.</div><div class="cart-total"><span>مبلغ قابل پرداخت</span><strong id="cartTotal">۰ تومان</strong></div><button id="checkoutBtn" class="primary-btn full">ثبت نهایی فروش</button></article>
-          </div>
-          <article class="panel"><div class="panel-heading"><div><h3>سوابق فاکتورها</h3><p class="muted">فاکتورهای ثبت‌شده در این گوشی</p></div></div><div id="invoiceTable" class="table-wrap"></div></article>
-        </section>
-
-        <section id="page-vip" class="page hidden">
-          <div class="section-heading"><div><span class="eyebrow">BIZAAP INSIGHTS</span><h2>مدیریت و تحلیل VIP <span class="vip-star">✦</span></h2><p class="muted">تحلیل‌ها از فاکتورهای ثبت‌شده در همین دیتابیس محلی محاسبه می‌شوند.</p></div><span class="soft-badge">نسخه آزمایشی</span></div>
-          <div class="vip-banner"><div><span class="eyebrow">گزارش عملکرد</span><h2>تصویر واقعی فروشگاهت</h2><p>هرچه فروش‌های بیشتری ثبت کنی، تحلیل‌ها کاربردی‌تر می‌شوند.</p></div><div class="banner-symbol">✦</div></div>
-          <div class="stats-grid vip-stats"><article class="stat-card"><div class="stat-top"><span>کل فروش</span><span class="stat-icon">↗</span></div><strong id="vipRevenue">۰</strong><small>تومان</small></article><article class="stat-card"><div class="stat-top"><span>سود ناخالص تخمینی</span><span class="stat-icon">◇</span></div><strong id="vipProfit">۰</strong><small>تومان، بر اساس قیمت خرید فعلی</small></article><article class="stat-card"><div class="stat-top"><span>تعداد فاکتورها</span><span class="stat-icon">▤</span></div><strong id="vipInvoices">۰</strong><small>فاکتور ثبت‌شده</small></article><article class="stat-card"><div class="stat-top"><span>میانگین فاکتور</span><span class="stat-icon">≈</span></div><strong id="vipAverage">۰</strong><small>تومان</small></article></div>
-          <div class="content-grid"><article class="panel"><div class="panel-heading"><div><h3>پرفروش‌ترین کالاها</h3><p class="muted">بر اساس تعداد فروخته‌شده</p></div></div><div id="topProducts" class="rank-list empty-state">هنوز اطلاعات کافی ثبت نشده است.</div></article><article class="panel"><div class="panel-heading"><div><h3>کم‌فروش / بدون فروش</h3><p class="muted">کالاهای بدون فروش در سوابق فعلی</p></div></div><div id="slowProducts" class="rank-list empty-state">هنوز اطلاعات کافی ثبت نشده است.</div></article></div>
-          <div class="content-grid"><article class="panel"><div class="panel-heading"><div><h3>فروش روزانه</h3><p class="muted">هفت روز اخیر</p></div></div><div id="salesChart" class="bar-chart empty-state">برای نمایش نمودار، فروش ثبت کن.</div></article><article class="panel"><div class="panel-heading"><div><h3>توصیه‌های مدیریتی</h3><p class="muted">بر پایه موجودی و فروش ثبت‌شده</p></div></div><div id="vipAdvice" class="advice-list"></div></article></div>
-          <article class="panel"><div class="panel-heading"><div><h3>مدیریت دسترسی VIP</h3><p class="muted">این بخش در نسخه فعلی فقط نمایشی و محلی است.</p></div></div><div class="notice"><strong>محدودیت مهم:</strong> این سه فایل به‌تنهایی نمی‌توانند پرداخت واقعی را تأیید کنند یا اشتراک کاربران دیگر را از راه دور مدیریت کنند. برای نسخه واقعی چندکاربره، بخش احراز هویت و اشتراک باید روی سرور امن باشد.</div><div class="vip-admin-row"><label class="toggle-label"><input type="checkbox" id="vipToggle"> فعال‌سازی نمایش VIP در همین مرورگر</label><span id="vipLocalStatus" class="soft-badge">محلی</span></div></article>
-        </section>
-      </section>
-    </main>
-    <footer><span> BIZAAP LITE </span><span>نسخه سبک مدیریت فروشگاه</span></footer>
-  </div>
-  <div id="invoiceModal" class="invoice-modal hidden" aria-hidden="true" role="dialog" aria-modal="true" aria-label="مشاهده فاکتور">
-    <div class="invoice-modal-card"><div class="invoice-modal-actions"><strong>مشاهده فاکتور</strong><div><button id="invoiceModalPrint" class="primary-btn">چاپ / ذخیره PDF</button><button id="invoiceModalClose" class="outline-btn">بستن</button></div></div><div id="invoiceModalBody"></div></div>
-  </div>
-  <div id="toast" class="toast" role="status"></div>
-  <input id="barcodeFallback" class="visually-hidden" inputmode="numeric" aria-label="ورود بارکد">
-  <script src="script.js"></script>
+  <section class="panel">
+    <h2>۳. فهرست و هشدار اشتراک‌ها</h2>
+    <div class="toolbar"><input id="search" placeholder="جست‌وجوی نام مشتری یا Repository"><select id="filter"><option value="all">همه اشتراک‌ها</option><option value="soon">در حال اتمام (۷ روز)</option><option value="expired">منقضی‌شده</option><option value="active">فعال</option><option value="paused">غیرفعال‌شده</option></select><button class="btn" id="refresh" disabled>تازه‌سازی</button></div>
+    <div id="alert" class="status" style="margin-bottom:12px">پس از اتصال، هشدارهای اشتراک اینجا نمایش داده می‌شوند.</div>
+    <div class="tablewrap"><table><thead><tr><th>مشتری</th><th>پایان اشتراک</th><th>وضعیت</th><th>یادداشت</th><th>عملیات</th></tr></thead><tbody id="rows"><tr><td colspan="5" class="empty">هنوز اطلاعاتی بارگذاری نشده است.</td></tr></tbody></table></div>
+    <div class="actions"><button class="btn" id="export" disabled>خروجی JSON پشتیبان</button></div>
+  </section>
+  <p class="foot">Bizaap Subscription Manager · اطلاعات مشتری‌ها در سایتشان نمایش داده نمی‌شود. غیرفعال‌سازی Repository مشتری را خودت در GitHub انجام می‌دهی.</p>
+</main>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const fa = n => new Intl.NumberFormat('fa-IR').format(n);
+  let records = [], connected = false, fileSha = null, editingId = null, busy = false;
+  const today = () => { const d = new Date(); d.setHours(0,0,0,0); return d; };
+  const parseDate = s => { if(!s) return null; const p=s.split('-').map(Number); if(p.length!==3||p.some(Number.isNaN)) return null; const d=new Date(p[0],p[1]-1,p[2]); d.setHours(0,0,0,0); return d; };
+  const daysLeft = r => { const end=parseDate(r.endDate); if(!end) return null; return Math.round((end-today())/86400000); };
+  const autoStatus = r => r.manualStatus==='paused'?'paused':(daysLeft(r)<0?'expired':(daysLeft(r)<=7?'soon':'active'));
+  const statusText = s => ({active:'فعال',soon:'در حال اتمام',expired:'منقضی‌شده',paused:'غیرفعال‌شده'})[s]||s;
+  const esc = s => String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const setStatus = (el,msg,type='') => { el.textContent=msg; el.className='status'+(type?' '+type:''); };
+  const getConfig = () => ({owner:$('owner').value.trim(),repo:$('repo').value.trim(),branch:$('branch').value.trim()||'main',token:$('token').value.trim()});
+  const apiUrl = () => { const c=getConfig(); return `https://api.github.com/repos/${encodeURIComponent(c.owner)}/${encodeURIComponent(c.repo)}/contents/subscriptions.json`; };
+  async function api(path, opts={}) {
+    const c=getConfig();
+    const res=await fetch(path,{...opts,headers:{'Accept':'application/vnd.github+json','Authorization':'Bearer '+c.token,'X-GitHub-Api-Version':'2022-11-28',...(opts.headers||{})}});
+    const body=await res.json().catch(()=>({}));
+    if(!res.ok) throw new Error(body.message||('GitHub API error '+res.status));
+    return body;
+  }
+  function encodeB64(str){const bytes=new TextEncoder().encode(str);let binary='';bytes.forEach(b=>binary+=String.fromCharCode(b));return btoa(binary);}
+  async function loadData(){
+    const c=getConfig();
+    if(!c.owner||!c.repo||!c.token) throw new Error('نام مالک، نام مخزن و توکن را کامل وارد کن.');
+    const url=apiUrl()+'?ref='+encodeURIComponent(c.branch);
+    try{
+      const data=await api(url);
+      fileSha=data.sha;
+      const binary=atob(data.content.replace(/\n/g,''));
+      const bytes=Uint8Array.from(binary,ch=>ch.charCodeAt(0));
+      const parsed=JSON.parse(new TextDecoder().decode(bytes));
+      records=Array.isArray(parsed)?parsed:[];
+    }catch(e){
+      if(String(e.message).includes('Not Found')){
+        records=[]; fileSha=null;
+      } else throw e;
+    }
+    connected=true; $('saveRecord').disabled=false; $('refresh').disabled=false; $('export').disabled=false;
+    setStatus($('connection'),`متصل شدی به ${c.owner}/${c.repo} — ${records.length} اشتراک بارگذاری شد.`,'good');
+    setStatus($('saveStatus'),'آماده ثبت یا ویرایش اطلاعات.','good');
+    render();
+  }
+  async function saveData(){
+    if(!connected) throw new Error('ابتدا به مخزن مدیریت متصل شو.');
+    const c=getConfig(), content=JSON.stringify(records,null,2);
+    const body={message:'Update Bizaap subscription records',content:encodeB64(content),branch:c.branch};
+    if(fileSha) body.sha=fileSha;
+    const result=await api(apiUrl(),{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    fileSha=result.content?.sha||fileSha;
+    setStatus($('saveStatus'),'اطلاعات با موفقیت در مخزن خصوصی ذخیره شد.','good');
+    render();
+  }
+  function resetForm(){
+    editingId=null; $('customer').value=''; $('customerRepo').value=''; $('startDate').value=''; $('endDate').value=''; $('manualStatus').value='active'; $('notes').value=''; $('formTitle').textContent='۲. ثبت اشتراک مشتری'; $('saveRecord').textContent='ذخیره در مخزن مدیریت';
+  }
+  function render(){
+    $('countAll').textContent=fa(records.length);
+    $('countActive').textContent=fa(records.filter(r=>autoStatus(r)==='active').length);
+    $('countSoon').textContent=fa(records.filter(r=>autoStatus(r)==='soon').length);
+    $('countExpired').textContent=fa(records.filter(r=>autoStatus(r)==='expired').length);
+    const search=$('search').value.trim().toLowerCase(), filter=$('filter').value;
+    const shown=records.filter(r=>(!search||(r.customer+' '+r.customerRepo).toLowerCase().includes(search))&&(filter==='all'||autoStatus(r)===filter)).sort((a,b)=>(daysLeft(a)??999999)-(daysLeft(b)??999999));
+    $('rows').innerHTML=shown.length?shown.map(r=>{
+      const s=autoStatus(r), left=daysLeft(r), leftText=left===null?'تاریخ نامعتبر':left<0?`${fa(Math.abs(left))} روز از انقضا گذشته`:left===0?'امروز آخرین روز اشتراک':`${fa(left)} روز باقی‌مانده`;
+      return `<tr><td><div class="customer">${esc(r.customer)}</div><div class="sub"><a style="color:#77b5ff" target="_blank" rel="noopener" href="${esc(r.customerRepo)}">${esc(r.customerRepo)}</a></div><div class="sub">شروع: ${esc(r.startDate||'—')}</div></td><td><b>${esc(r.endDate||'—')}</b><div class="sub">${leftText}</div></td><td><span class="tag ${s}">${statusText(s)}</span></td><td>${esc(r.notes||'—')}</td><td><div class="rowactions"><button class="btn mini" data-edit="${esc(r.id)}">ویرایش</button><button class="btn mini danger" data-del="${esc(r.id)}">حذف</button></div></td></tr>`;
+    }).join(''):'<tr><td colspan="5" class="empty">موردی مطابق این فیلتر پیدا نشد.</td></tr>';
+    const urgent=records.filter(r=>autoStatus(r)==='expired'||autoStatus(r)==='soon');
+    setStatus($('alert'),urgent.length?urgent.map(r=>`${r.customer}: ${autoStatus(r)==='expired'?'اشتراک تمام شده':daysLeft(r)===0?'امروز پایان اشتراک است':`${fa(daysLeft(r))} روز تا پایان اشتراک`}`).join('\n'):'در حال حاضر اشتراکی منقضی نشده یا در ۷ روز آینده به پایان نمی‌رسد.',urgent.length?'warn':'good');
+  }
+  $('connect').addEventListener('click',async()=>{if(busy)return;busy=true;$('connect').disabled=true;setStatus($('connection'),'در حال اتصال به GitHub…');try{await loadData();}catch(e){connected=false;$('saveRecord').disabled=true;setStatus($('connection'),'اتصال ناموفق: '+e.message,'bad');}finally{busy=false;$('connect').disabled=false;}});
+  $('disconnect').addEventListener('click',()=>{connected=false;fileSha=null;records=[];$('token').value='';$('saveRecord').disabled=true;$('refresh').disabled=true;$('export').disabled=true;setStatus($('connection'),'توکن از صفحه پاک شد و اتصال قطع شد.');setStatus($('saveStatus'),'برای ذخیره، ابتدا به مخزن مدیریت متصل شو.');render();});
+  $('refresh').addEventListener('click',async()=>{try{setStatus($('connection'),'در حال تازه‌سازی…');await loadData();}catch(e){setStatus($('connection'),'خطا: '+e.message,'bad');}});
+  $('saveRecord').addEventListener('click',async()=>{
+    const customer=$('customer').value.trim(), customerRepo=$('customerRepo').value.trim(), startDate=$('startDate').value,endDate=$('endDate').value;
+    if(!customer||!customerRepo||!startDate||!endDate){setStatus($('saveStatus'),'نام مشتری، لینک Repository و هر دو تاریخ لازم هستند.','bad');return;}
+    if(!/^https:\/\/github\.com\/[^/]+\/[^/]+\/?$/.test(customerRepo)){setStatus($('saveStatus'),'لینک Repository باید شبیه https://github.com/username/repository باشد.','bad');return;}
+    if(endDate<startDate){setStatus($('saveStatus'),'تاریخ پایان نمی‌تواند قبل از تاریخ شروع باشد.','bad');return;}
+    const record={id:editingId||('sub_'+Date.now()+'_'+Math.random().toString(36).slice(2,7)),customer,customerRepo:customerRepo.replace(/\/$/,''),startDate,endDate,manualStatus:$('manualStatus').value,notes:$('notes').value.trim(),updatedAt:new Date().toISOString()};
+    if(editingId) records=records.map(r=>r.id===editingId?record:r); else records.push(record);
+    $('saveRecord').disabled=true;
+    try{await saveData();resetForm();}catch(e){setStatus($('saveStatus'),'ذخیره ناموفق: '+e.message+' — اتصال یا مجوز توکن را بررسی کن.','bad');}
+    finally{$('saveRecord').disabled=!connected;}
+  });
+  $('resetForm').addEventListener('click',resetForm);
+  $('search').addEventListener('input',render);$('filter').addEventListener('change',render);
+  $('rows').addEventListener('click',async e=>{
+    const edit=e.target.closest('[data-edit]'), del=e.target.closest('[data-del]');
+    if(edit){const r=records.find(x=>x.id===edit.dataset.edit);if(!r)return;editingId=r.id;$('customer').value=r.customer;$('customerRepo').value=r.customerRepo;$('startDate').value=r.startDate;$('endDate').value=r.endDate;$('manualStatus').value=r.manualStatus||'active';$('notes').value=r.notes||'';$('formTitle').textContent='ویرایش اشتراک مشتری';$('saveRecord').textContent='ذخیره تغییرات';$('editorPanel').scrollIntoView({behavior:'smooth',block:'start'});}
+    if(del){const r=records.find(x=>x.id===del.dataset.del);if(!r||!confirm(`اشتراک «${r.customer}» از فهرست مدیریت حذف شود؟ این کار Repository مشتری را حذف یا غیرفعال نمی‌کند.`))return;records=records.filter(x=>x.id!==r.id);try{await saveData();if(editingId===r.id)resetForm();}catch(err){setStatus($('saveStatus'),'ذخیره حذف ناموفق: '+err.message,'bad');}}
+  });
+  $('export').addEventListener('click',()=>{const blob=new Blob([JSON.stringify(records,null,2)],{type:'application/json;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='bizaap-subscriptions-backup.json';a.click();URL.revokeObjectURL(a.href);});
+  render();
+})();
+</script>
 </body>
 </html>
